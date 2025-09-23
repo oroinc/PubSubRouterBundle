@@ -1,7 +1,7 @@
 {
-    "name": "gos/pubsub-router-bundle",
+    "name": "oroinc/pubsub-router-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony PubSub Router Bundle",
+    "description": "A fork of Symfony PubSub Router Bundle that enables PHP 8.4 and Symfony 7 support",
     "keywords": ["PubSub Bundle", "PubSub", "Bundle", "Redis", "WAMP", "ZMQ"],
     "homepage": "https://github.com/GeniusesOfSymfony/PubSubRouterBundle",
     "license": "MIT",
