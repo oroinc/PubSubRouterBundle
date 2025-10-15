@@ -196,7 +196,7 @@ class Router implements RouterInterface, WarmableInterface
      *
      * @return string[] A list of classes to preload on PHP 7.4+
      */
-    public function warmUp($cacheDir)
+    public function warmUp(string $cacheDir, ?string $buildDir = null): array
     {
         $currentDir = $this->getOption('cache_dir');
 
