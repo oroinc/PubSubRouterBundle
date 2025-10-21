@@ -68,8 +68,6 @@ class DebugRouterCommand extends Command
                 $routeName = $routeArgument;
             }
         } elseif (null !== $routerOption) {
-            trigger_deprecation('gos/pubsub-router-bundle', '2.5', 'The "router_name" option of the "gos:prouter:debug" command is deprecated and will be removed in 3.0, use the router argument instead.');
-
             $routerName = $routerOption;
             $routeName = null;
         } else {

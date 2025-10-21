@@ -130,8 +130,6 @@ class Router implements RouterInterface, WarmableInterface
         $invalid = [];
 
         foreach ($options as $key => $value) {
-            $this->checkDeprecatedOption($key);
-
             if (\array_key_exists($key, $this->options)) {
                 $this->options[$key] = $value;
             } else {
@@ -155,8 +153,6 @@ class Router implements RouterInterface, WarmableInterface
             throw new \InvalidArgumentException(sprintf('The Router does not support the "%s" option.', $key));
         }
 
-        $this->checkDeprecatedOption($key);
-
         $this->options[$key] = $value;
     }
 
@@ -170,8 +166,6 @@ class Router implements RouterInterface, WarmableInterface
         if (!\array_key_exists($key, $this->options)) {
             throw new \InvalidArgumentException(sprintf('The Router does not support the "%s" option.', $key));
         }
-
-        $this->checkDeprecatedOption($key);
 
         return $this->options[$key];
     }
@@ -202,7 +196,7 @@ class Router implements RouterInterface, WarmableInterface
      *
      * @return string[] A list of classes to preload on PHP 7.4+
      */
-    public function warmUp($cacheDir)
+    public function warmUp(string $cacheDir, ?string $buildDir = null): array
     {
         $currentDir = $this->getOption('cache_dir');
 
@@ -343,17 +337,6 @@ class Router implements RouterInterface, WarmableInterface
         }
 
         return $this->configCacheFactory;
-    }
-
-    private function checkDeprecatedOption(string $key): void
-    {
-        switch ($key) {
-            case 'generator_base_class':
-            case 'generator_cache_class':
-            case 'matcher_base_class':
-            case 'matcher_cache_class':
-                trigger_deprecation('gos/pubsub-router-bundle', '2.4', sprintf('Option "%s" given to router %s is deprecated.', $key, static::class));
-        }
     }
 
     private static function getCompiledRoutes(string $path): array
